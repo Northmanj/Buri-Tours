@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Dashboard | Buri Tours Nairobi</title>
+    <meta name="description" content="Admin dashboard for managing Buri Tours bookings (localStorage)." />
+    <meta name="robots" content="noindex,nofollow" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div id="loginView" class="login" style="display:none">
+      <div class="login-card">
+        <div style="display:flex; align-items:center; gap:12px">
+          <img src="images/logo.png" alt="Buri Tours logo" style="width:44px;height:44px;border-radius:16px;object-fit:cover" />
+          <div>
+            <h1>Admin Login</h1>
+            <p>Buri Tours and Travels Consultants • Nairobi, Kenya</p>
+          </div>
+        </div>
+
+        <form id="loginForm" autocomplete="on" style="margin-top:14px">
+          <div class="field">
+            <label for="adminEmail">Email</label>
+            <input id="adminEmail" class="input" type="email" placeholder="admin@gmail.com" required />
+          </div>
+          <div class="field">
+            <label for="adminPassword">Password</label>
+            <input id="adminPassword" class="input" type="password" placeholder="1234" required />
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px">
+            <button class="btn btn-primary" type="submit">Sign in</button>
+            <a class="btn" href="index.html">Back to website</a>
+          </div>
+
+          <div id="loginError" class="error" role="alert">Invalid login. Use admin@gmail.com / 1234.</div>
+        </form>
+      </div>
+    </div>
+
+    <div id="appView" class="wrap" style="display:none">
+      <aside class="sidebar">
+        <div class="brand">
+          <img src="images/logo.png" alt="Buri Tours logo" />
+          <div>
+            <strong>Buri Tours Admin</strong>
+            <span>Nairobi, Kenya</span>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Admin navigation">
+          <a class="active" href="#" aria-current="page">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+            Dashboard
+          </a>
+          <a href="index.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            Website
+          </a>
+        </nav>
+
+        <div class="side-actions">
+          <button class="btn btn-danger" id="btnLogout" type="button">Logout</button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="container">
+          <div class="topbar">
+            <div>
+              <h1>Bookings Dashboard</h1>
+              <div class="sub">Manage bookings saved from the website booking form (stored in this browser).</div>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center">
+              <button class="btn btn-danger" id="btnClearAll" type="button">Clear all bookings</button>
+            </div>
+          </div>
+
+          <section class="cards" aria-label="Stats">
+            <div class="stat">
+              <div class="k">Total bookings</div>
+              <div class="v" id="statTotal">0</div>
+              <div class="hint">All saved bookings</div>
+            </div>
+            <div class="stat">
+              <div class="k">Most selected package</div>
+              <div class="v" id="statTop">—</div>
+              <div class="hint" id="statHint">No bookings yet</div>
+            </div>
+            <div class="stat">
+              <div class="k">Admin login</div>
+              <div class="v" style="font-size:18px">admin@gmail.com</div>
+              <div class="hint">Password: 1234</div>
+            </div>
+          </section>
+
+          <section class="panel" aria-label="Bookings table">
+            <div class="panel-head">
+              <strong>Bookings</strong>
+              <div class="tools">
+                <input id="search" class="input" placeholder="Search name, email, package, date…" />
+              </div>
+            </div>
+
+            <div id="emptyState" class="muted" style="display:none; padding: 10px 2px">
+              No bookings found. Create one on the main website under “Booking system”.
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Package</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </section>
+
+          <div class="muted" style="margin-top: 12px; font-size: 12.5px">
+            Note: bookings are stored in <strong>localStorage</strong> in this browser only. Hosting with a backend/database is needed
+            to share bookings across devices.
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="admin.js" defer></script>
+  </body>
+</html>
+
