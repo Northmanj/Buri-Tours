@@ -157,7 +157,7 @@ function initLogin() {
     const email = String(qs("#adminEmail")?.value || "").trim();
     const password = String(qs("#adminPassword")?.value || "").trim();
 
-    if (email === "admin@gmail.com" && password === "1234") {
+    if (email === "admin@buritours.co.ke" && password === "buritour200!") {
       setAuthed();
       location.reload();
       return;
